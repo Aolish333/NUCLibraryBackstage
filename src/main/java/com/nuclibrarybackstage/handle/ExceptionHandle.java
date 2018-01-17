@@ -2,7 +2,7 @@ package com.nuclibrarybackstage.handle;
 
 import com.nuclibrarybackstage.domain.Result;
 import com.nuclibrarybackstage.excepation.UserException;
-import com.nuclibrarybackstage.utlis.ResultUtlis;
+import com.nuclibrarybackstage.utlis.ResultUtli;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -24,10 +24,10 @@ public class ExceptionHandle {
     public Result handle(Exception e){
         if (e instanceof UserException){
             UserException userException = (UserException)e;
-            return ResultUtlis.error(userException.getCode(),userException.getMessage());
+            return ResultUtli.error(userException.getCode(),userException.getMessage());
         }else{
             logger.error("【系统异常】 {}",e);
-            return ResultUtlis.error(-1, "未知错误");
+            return ResultUtli.error(-1, "未知错误");
         }
     }
 }

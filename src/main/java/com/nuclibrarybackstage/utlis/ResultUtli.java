@@ -7,7 +7,7 @@ import com.nuclibrarybackstage.domain.Result;
  * @date 2018/1/12 16:15
  * User:Lee
  */
-public class ResultUtlis {
+public class ResultUtli {
     public static Result success (Object object){
         Result result = new Result();
         result.setCode(0);
