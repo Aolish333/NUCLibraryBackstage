@@ -12,6 +12,13 @@ spring:
     show-sql: true
 
 
+
 server:
   port: 8080
+
+#logging:
+#  pattern:
+#    console: "%d - %mag%m"
+#  path: var/log/tomcat/
+
 #  context-path: /test
