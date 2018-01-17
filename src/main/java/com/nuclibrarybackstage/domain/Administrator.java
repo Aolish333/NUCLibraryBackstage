@@ -1,6 +1,7 @@
 package com.nuclibrarybackstage.domain;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,36 +14,14 @@ import javax.validation.constraints.Size;
  * User:Lee
  */
 @Entity
+@Data
 public class Administrator {
-    public Integer getJobNumber() {
-        return jobNumber;
-    }
-
-    public void setJobNumber(Integer jobNumber) {
-        this.jobNumber = jobNumber;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Integer getJurisdiction() {
-        return jurisdiction;
-    }
-
-    public void setJurisdiction(Integer jurisdiction) {
-        this.jurisdiction = jurisdiction;
-    }
 
 
     @ApiModelProperty("管理员工号")
     @Column(nullable = false)
     @Id
-    private Integer jobNumber;
+    private String jobNumber;
 
 
     @Column(nullable = false)

@@ -3,6 +3,7 @@ package com.nuclibrarybackstage.controller;
 import com.nuclibrarybackstage.domain.Result;
 import com.nuclibrarybackstage.domain.User;
 import com.nuclibrarybackstage.repository.UserRepository;
+import com.nuclibrarybackstage.service.UserService;
 import com.nuclibrarybackstage.utlis.ResultUtli;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -10,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +24,8 @@ import java.util.List;
  * UserRepository:Lee
  */
 @Api(value = "学生信息管理平台",description = "学生基本信息操作API",tags = "StudentApi", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-@RestController
+//@RestController
+@Controller
 public class UerController {
 
     private final static Logger logger = LoggerFactory.getLogger(UerController.class);
@@ -30,6 +33,9 @@ public class UerController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserService userService;
 
     /**
      * 添加一个学生用户

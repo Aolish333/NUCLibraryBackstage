@@ -3,9 +3,11 @@ package com.nuclibrarybackstage.controller;
 import com.nuclibrarybackstage.domain.Administrator;
 import com.nuclibrarybackstage.domain.Result;
 import com.nuclibrarybackstage.repository.AdministratorRepository;
+import com.nuclibrarybackstage.service.AdministratorService;
 import com.nuclibrarybackstage.utlis.ResultUtli;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,12 +19,16 @@ import java.util.List;
  * @date 2018/1/15 9:53
  * User:Lee
  */
-@RestController
+//@RestController
+@Controller
 public class AdministratorController {
 
 
     @Autowired
     private AdministratorRepository administratorRepository;
+
+    @Autowired
+    AdministratorService administratorService;
 
     @PostMapping(value = "/administrator")
     public Result<Administrator> administratorAdd(@Valid Administrator administrator , BindingResult bindingResult){

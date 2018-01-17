@@ -15,7 +15,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public LoginEnum findUser(String studentID, String password) {
-
         return null;
     }
 }
