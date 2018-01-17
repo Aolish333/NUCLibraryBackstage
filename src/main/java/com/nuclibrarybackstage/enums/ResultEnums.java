@@ -7,9 +7,7 @@ package com.nuclibrarybackstage.enums;
  */
 public enum ResultEnums {
     UNKONW_ERROR(-1, "未知错误"),
-    SUCCESS(0, "成功"),
-    PRIMARY_SCHOOL(100, "/////100 错误码////"),
-    MIDDLE_SCHOOL(101, "//////101 错误码//////");
+    SUCCESS(0, "成功");
 
     ResultEnums(Integer code, String msg) {
         this.code = code;

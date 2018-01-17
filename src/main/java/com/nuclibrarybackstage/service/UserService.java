@@ -1,40 +1,21 @@
 package com.nuclibrarybackstage.service;
 
-import com.nuclibrarybackstage.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.nuclibrarybackstage.enums.LoginEnum;
 
 /**
  * @author aolish333@gmail.com
  * @date 2018/1/12 16:23
  * User:Lee
  */
-@Service
-public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+public interface UserService {
 
     /**
-     * 选择座位
+     * 登陆
+     * @param studentID 学号
+     * @param password 密码
+     * @return code & msg & data
      */
-    public void SeletedSeat(){
-
-    }
-
-    /**
-     * 释放座位
-     */
-
-
-    /**
-     * 用户登陆
-     */
-
-
-    /**
-     * 退出登陆
-     */
-
+    LoginEnum findUser(String studentID, String password);
 
 }
