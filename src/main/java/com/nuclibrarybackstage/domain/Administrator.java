@@ -51,7 +51,7 @@ public class Administrator {
     private String password;
 
 
-    @Column(nullable = false)
+    @Column(nullable = false,length = 1)
     @ApiModelProperty("管理员权限")
     private Integer jurisdiction;
 }

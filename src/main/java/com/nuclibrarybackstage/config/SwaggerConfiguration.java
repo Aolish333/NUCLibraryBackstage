@@ -31,7 +31,7 @@ public class SwaggerConfiguration {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-            .title("Student info query api")
+            .title("NUC API")
             .description("Some API to operator student information")
             .termsOfServiceUrl("http://localhost:8080/swagger-ui.html")
             .version("1.0")

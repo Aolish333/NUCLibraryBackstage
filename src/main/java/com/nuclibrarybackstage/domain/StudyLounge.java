@@ -65,12 +65,11 @@ public class StudyLounge {
         this.numberOfPoeple = numberOfPoeple;
     }
 
-
+    @ApiModelProperty("自习教室号")
     @Id
     @GeneratedValue(generator = "classRoomNO")
     @GenericGenerator(name = "classRoomNO",strategy = "assigned")
     @Column(length = 11)
-    @ApiModelProperty("自习教室号")
     private String classRoomNo;
 
 
@@ -79,6 +78,7 @@ public class StudyLounge {
 
 
     @ApiModelProperty(value = "教室所容纳的人数",notes = "最大值为9999")
+    @Column(length = 4)
     private String numberOfPoeple;
 
 

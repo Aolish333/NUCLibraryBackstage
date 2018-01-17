@@ -1,7 +1,7 @@
 package com.nuclibrarybackstage;
 
-import com.alibaba.fastjson.JSON;
-import com.nuclibrarybackstage.domain.Student;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nuclibrarybackstage.domain.User;
 import io.github.robwin.markup.builder.MarkupLanguage;
 import io.github.robwin.swagger2markup.GroupBy;
 import io.github.robwin.swagger2markup.Swagger2MarkupConverter;
@@ -18,8 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import springfox.documentation.staticdocs.SwaggerResultHandler;
 
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessResponse;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -60,24 +59,37 @@ public class Documentation {
 
     @Test
     public void TestApi() throws Exception{
-        mockMvc.perform(get("/student").param("name", "szl")
+        mockMvc.perform(get("/user").param("id", "1")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andDo(MockMvcRestDocumentation.document("getStudent", preprocessResponse(prettyPrint())));
+                .andDo(MockMvcRestDocumentation.document("getUser", preprocessResponse(prettyPrint())));
 
-        Student student = new Student();
-        student.setName("szl");
-        student.setAge(23);
-        student.setAddress("湖北麻城");
-        student.setCls("二年级");
-        student.setSex("男");
 
-        mockMvc.perform(post("/student").contentType(MediaType.APPLICATION_JSON)
-                .content(JSON.toJSONString(student))
+
+        mockMvc.perform(delete("/user/123")
                 .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andDo(MockMvcRestDocumentation.document("deleteUser", preprocessResponse(prettyPrint())));
+
+        User userinfo = new User();
+        userinfo.setPassword("1234455667");
+        userinfo.setStudentID("234234");
+
+        mockMvc.perform(post("/user").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .content(asJsonString(userinfo))
+//                .accept(MediaType.APPLICATION_FORM_URLENCODED)
+ )
                 .andExpect(status().is2xxSuccessful())
-                .andDo(MockMvcRestDocumentation.document("addStudent", preprocessResponse(prettyPrint())));
+                .andDo(MockMvcRestDocumentation.document("insertUser", preprocessResponse(prettyPrint())));
+
     }
 
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

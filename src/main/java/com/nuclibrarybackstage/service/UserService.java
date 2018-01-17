@@ -14,4 +14,15 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    /**
+     * 选择座位
+     */
+    public void SeletedSeat(){
+
+    }
+
+    /**
+     * 释放座位
+     */
 }
