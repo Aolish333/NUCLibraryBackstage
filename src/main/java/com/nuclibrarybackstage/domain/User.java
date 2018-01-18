@@ -2,8 +2,8 @@ package com.nuclibrarybackstage.domain;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -16,12 +16,13 @@ import java.util.Set;
  */
 @ApiModel(value = "User", description = "用户信息描述")
 @Entity
+@Data
 public class User {
     @ApiModelProperty("学号")
     @Id
     @GeneratedValue(generator = "studentID")
     @GenericGenerator(name = "studentID",strategy = "assigned")
-    @Column(nullable = false)
+    @Column(nullable = false,length = 12)
     private String studentID;
 
     @ApiModelProperty("密码")
@@ -30,9 +31,26 @@ public class User {
     private String password;
 
     @ApiModelProperty(value = "信用分",notes = "信用分，默认值为100分")
-    @Value("100")
-    @Column(length = 3)
+    @Column(length = 3,columnDefinition = "100")
     private String creditScore;
+
+    public User(String studentID, String password, String creditScore) {
+        this.studentID = studentID;
+        this.password = password;
+        this.creditScore = creditScore;
+    }
+
+    public User(){}
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "studentID='" + studentID + '\'' +
+                ", password='" + password + '\'' +
+                ", creditScore='" + creditScore + '\'' +
+                '}';
+    }
 
     @ApiModelProperty(value = "选座的单号",notes = "外键")
     @OneToMany(cascade = CascadeType.ALL, targetEntity = SeatSelectionInformation.class)
@@ -46,30 +64,5 @@ public class User {
     public void setSeatSelectionInformations(Set <SeatSelectionInformation> seatSelectionInformations) {
         this.seatSelectionInformations = seatSelectionInformations;
     }
-
-    public String getStudentID() {
-        return studentID;
-    }
-
-    public void setStudentID(String studentID) {
-        this.studentID = studentID;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getCreditScore() {
-        return creditScore;
-    }
-
-    public void setCreditScore(String creditScore) {
-        this.creditScore = creditScore;
-    }
-
 
 }

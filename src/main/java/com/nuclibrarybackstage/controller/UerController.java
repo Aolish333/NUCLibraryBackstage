@@ -24,8 +24,7 @@ import java.util.List;
  * UserRepository:Lee
  */
 @Api(value = "学生信息管理平台",description = "学生基本信息操作API",tags = "StudentApi", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-//@RestController
-@Controller
+@RestController
 public class UerController {
 
     private final static Logger logger = LoggerFactory.getLogger(UerController.class);
@@ -37,6 +36,7 @@ public class UerController {
     @Autowired
     private UserService userService;
 
+
     /**
      * 添加一个学生用户
      *
@@ -45,12 +45,12 @@ public class UerController {
      * @return
      */
     @ApiOperation(value = "insertUser", notes = "添加一个学生", code = 201)
-    @PostMapping(value = "/user")
+    @RequestMapping(value = "/user" , method = RequestMethod.POST)
     public Result<User> insertUser(@Valid User user , BindingResult bindingResult) {
         if (bindingResult.hasErrors()){
             return ResultUtli.error(1,bindingResult.getFieldError().getDefaultMessage());
         }
-        return ResultUtli.success(userRepository.save(user));
+        return ResultUtli.success(userService.addUser(user.getStudentID(), user.getPassword(), user.getCreditScore()));
     }
 
     /**

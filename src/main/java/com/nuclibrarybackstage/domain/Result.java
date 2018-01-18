@@ -1,10 +1,13 @@
 package com.nuclibrarybackstage.domain;
 
+import lombok.Data;
+
 /**
  * @author aolish333@gmail.com
  * @date 2018/1/12 16:11
  * User:Lee
  */
+@Data
 public class Result<T> {
 
     /** 错误码. */
@@ -15,28 +18,4 @@ public class Result<T> {
 
     /** 具体的内容. */
     private T data;
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
 }

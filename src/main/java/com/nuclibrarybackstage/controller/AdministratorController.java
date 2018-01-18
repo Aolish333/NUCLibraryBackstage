@@ -7,7 +7,6 @@ import com.nuclibrarybackstage.service.AdministratorService;
 import com.nuclibrarybackstage.utlis.ResultUtli;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,8 +18,7 @@ import java.util.List;
  * @date 2018/1/15 9:53
  * User:Lee
  */
-//@RestController
-@Controller
+@RestController
 public class AdministratorController {
 
 
@@ -48,6 +46,7 @@ public class AdministratorController {
     public List <Administrator> administratorList() {
         return administratorRepository.findAll();
     }
+
 
     /**
      * 删除用户

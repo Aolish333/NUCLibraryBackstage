@@ -8,6 +8,7 @@ package com.nuclibrarybackstage.domain;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -22,44 +23,22 @@ import javax.persistence.*;
  */
 @Api("座位表")
 @Entity
+@Data
 public class ClassroomSeatStitution {
 
     public  ClassroomSeatStitution(){
 
     }
 
-
-    public String getSeatUsageState() {
-        return SeatUsageState;
-    }
-
-    public void setSeatUsageState(String seatUsageState) {
-        SeatUsageState = seatUsageState;
-    }
-
-    public StudyLounge getStudyLounge() {
-        return studyLounge;
-    }
-
-    public void setStudyLounge(StudyLounge studyLounge) {
-        this.studyLounge = studyLounge;
-    }
-
-    public String getStudyLoungeSeatID() {
-        return studyLoungeSeatID;
-    }
-
-    public void setStudyLoungeSeatID(String studyLoungeSeatID) {
-        this.studyLoungeSeatID = studyLoungeSeatID;
-    }
-
     @Id
     @GeneratedValue(generator = "studyLoungeSeatID")
     @GenericGenerator(name = "studyLoungeSeatID" ,strategy = "assigned")
     @ApiModelProperty("座位号")
+    @Column(nullable = false,length = 20)
     private String studyLoungeSeatID;
 
 
+    @Column(length = 20)
     @ApiModelProperty("座位目前使用情况")
     private String SeatUsageState;
 
@@ -67,8 +46,6 @@ public class ClassroomSeatStitution {
     @ManyToOne(cascade={CascadeType.ALL},fetch = FetchType.EAGER)
     @JoinColumn(name = "classRoomNo")
     private StudyLounge studyLounge;
-
-
 
 
 }

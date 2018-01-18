@@ -25,7 +25,8 @@ public class ExceptionHandle {
         if (e instanceof UserException){
             UserException userException = (UserException)e;
             return ResultUtli.error(userException.getCode(),userException.getMessage());
-        }else{
+        }
+        else{
             logger.error("【系统异常】 {}",e);
             return ResultUtli.error(-1, "未知错误");
         }

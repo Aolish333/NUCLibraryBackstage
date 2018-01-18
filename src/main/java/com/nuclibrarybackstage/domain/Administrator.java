@@ -19,7 +19,7 @@ public class Administrator {
 
 
     @ApiModelProperty("管理员工号")
-    @Column(nullable = false)
+    @Column(nullable = false,length = 12)
     @Id
     private String jobNumber;
 

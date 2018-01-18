@@ -10,4 +10,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 
 public interface StudyLoungeRepository extends JpaRepository<StudyLounge,String> {
+    void deleteStudyLoungesByClassRoomNo(String classRoomNo);
 }

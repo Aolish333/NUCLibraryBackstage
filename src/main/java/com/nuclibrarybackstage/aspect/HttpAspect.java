@@ -21,7 +21,8 @@ public class HttpAspect {
 
     private final static Logger logger = LoggerFactory.getLogger(HttpAspect.class);
 
-    @Pointcut("execution(public * com.nuclibrarybackstage.controller.*.*(..))")
+//    @Pointcut("execution(public * com.nuclibrarybackstage.controller.*.*(..))")
+    @Pointcut("execution(public * com.nuclibrarybackstage.controller.UerController.*(..))")
     public void log(){}
 
     @Before("log()")
